@@ -6,11 +6,17 @@ type ButtonTypes = ButtonHTMLAttributes<HTMLButtonElement>;
 type IButtonProps = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
+  danger?: boolean;
 } & ButtonTypes;
 
-export const Button = ({ children, onClick, ...props }: IButtonProps) => {
+export const Button = ({
+  children,
+  onClick,
+  danger = false,
+  ...props
+}: IButtonProps) => {
   return (
-    <Container {...props} onClick={onClick}>
+    <Container {...props} onClick={onClick} danger={danger}>
       {children}
     </Container>
   );
