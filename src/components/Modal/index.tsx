@@ -1,5 +1,7 @@
+import { FunctionComponent } from "react";
 import { Button } from "components/Button";
 import { Container, Footer, Overlay } from "./styles";
+import ReactDOM from "react-dom";
 
 export interface IModalProps {
   title?: string;
@@ -7,12 +9,12 @@ export interface IModalProps {
   danger?: boolean;
 }
 
-const Modal: React.FC<IModalProps> = ({
+const Modal: FunctionComponent<IModalProps> = ({
   title = "Título do modal",
   content = "Conteúdo do modal",
   danger = false,
 }) => {
-  return (
+  return ReactDOM.createPortal(
     <Overlay>
       <Container danger={danger}>
         <h1>{title}</h1>
@@ -27,7 +29,8 @@ const Modal: React.FC<IModalProps> = ({
           </Button>
         </Footer>
       </Container>
-    </Overlay>
+    </Overlay>,
+    document.getElementById("modal-root")
   );
 };
 
