@@ -16,8 +16,8 @@ const ContactForm: FunctionComponent<IContactFormProps> = ({ buttonLabel }) => {
         <Input placeholder="Nome" />
       </FormGroup>
 
-      <FormGroup error="O formato do e-mail é inválido">
-        <Input placeholder="Email" error />
+      <FormGroup>
+        <Input placeholder="Email" />
       </FormGroup>
 
       <FormGroup>
