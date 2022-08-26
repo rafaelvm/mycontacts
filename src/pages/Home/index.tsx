@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import {
   Card,
   Container,
@@ -9,12 +10,10 @@ import { ReactComponent as ArrowSvg } from "assets/arrow.svg";
 import { ReactComponent as EditSvg } from "assets/edit.svg";
 import { ReactComponent as TrashSvg } from "assets/trash.svg";
 import { Link } from "react-router-dom";
-import Modal from "components/Modal";
 
-export const Home: React.FC = () => {
+export const Home: FunctionComponent = () => {
   return (
     <Container>
-      <Modal danger />
       <InputSearchContainer>
         <input type="text" placeholder="Pesquisar contato" />
       </InputSearchContainer>

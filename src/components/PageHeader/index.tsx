@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import { Container } from "./styles";
 import { Link } from "react-router-dom";
 import { ReactComponent as ArrowSvg } from "assets/arrow.svg";
@@ -6,7 +7,7 @@ interface IPageHeaderProps {
   title: string;
 }
 
-const PageHeader: React.FC<IPageHeaderProps> = ({ title }) => {
+const PageHeader: FunctionComponent<IPageHeaderProps> = ({ title }) => {
   return (
     <Container>
       <Link to="/">

@@ -1,6 +1,7 @@
+import { FunctionComponent } from "react";
 import { Container } from "./styles";
 
-const FormGroup: React.FC = ({ children }) => {
+const FormGroup: FunctionComponent = ({ children }) => {
   return <Container>{children}</Container>;
 };
 
