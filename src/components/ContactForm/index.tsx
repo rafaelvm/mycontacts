@@ -6,6 +6,7 @@ import FormGroup from "components/FormGroup";
 import Input from "components/Input";
 import Select from "components/Select";
 import isEmailValid from "utils/isEmailValid";
+import formatPhone from "utils/formatPhone";
 
 interface IContactFormProps {
   buttonLabel: string;
@@ -17,7 +18,12 @@ const ContactForm: FunctionComponent<IContactFormProps> = ({ buttonLabel }) => {
   const [phone, setPhone] = useState("");
   const [category, setCategory] = useState("");
 
-  const { setError, removeError, getErrorMessageByFieldName } = useErrors();
+  const {
+    errors,
+    setError,
+    removeError,
+    getErrorMessageByFieldName,
+  } = useErrors();
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -39,15 +45,21 @@ const ContactForm: FunctionComponent<IContactFormProps> = ({ buttonLabel }) => {
     }
   };
 
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(formatPhone(event.target.value));
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
+  const isFormValid = name && email && errors.length;
+
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} noValidate>
       <FormGroup error={getErrorMessageByFieldName("name")}>
         <Input
-          placeholder="Nome"
+          placeholder="Nome *"
           value={name}
           onChange={handleNameChange}
           error={getErrorMessageByFieldName("name")}
@@ -56,7 +68,8 @@ const ContactForm: FunctionComponent<IContactFormProps> = ({ buttonLabel }) => {
 
       <FormGroup error={getErrorMessageByFieldName("email")}>
         <Input
-          placeholder="Email"
+          type="email"
+          placeholder="Email *"
           value={email}
           onChange={handleEmailChange}
           error={getErrorMessageByFieldName("email")}
@@ -65,9 +78,11 @@ const ContactForm: FunctionComponent<IContactFormProps> = ({ buttonLabel }) => {
 
       <FormGroup>
         <Input
+          type="tel"
           placeholder="Telefone"
           value={phone}
-          onChange={(event) => setPhone(event.target.value)}
+          onChange={handlePhoneChange}
+          maxLength={15}
         />
       </FormGroup>
 
@@ -85,7 +100,9 @@ const ContactForm: FunctionComponent<IContactFormProps> = ({ buttonLabel }) => {
       </FormGroup>
 
       <ButtonContainer>
-        <Button type="button">{buttonLabel}</Button>
+        <Button type="button" disabled={!isFormValid}>
+          {buttonLabel}
+        </Button>
       </ButtonContainer>
     </Form>
   );
