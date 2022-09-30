@@ -1,11 +1,11 @@
-export type ISetErrors = {
+export type IErrorType = {
   field: string;
   message: string;
 };
 
 export type IErrors = {
   errors: any[];
-  setError: ({ field, message }: ISetErrors) => void;
+  setError: ({ field, message }: IErrorType) => void;
   removeError: (fieldName: string) => void;
-  getErrorMessageByFieldName: (fieldName: string) => any;
+  getErrorMessageByFieldName: (fieldName: string) => string;
 };

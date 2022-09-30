@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { IErrors, ISetErrors } from "./types";
+import { IErrors, IErrorType } from "./types";
 
 export const useErrors = (): IErrors => {
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<IErrorType[]>([]);
 
-  const setError = ({ field, message }: ISetErrors) => {
+  const setError = ({ field, message }: IErrorType) => {
     const errorAlreadyExists = errors.find((error) => error.field === field);
 
     if (errorAlreadyExists) {

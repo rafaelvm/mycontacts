@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface InputProps {
-  error?: boolean;
+  error?: string | boolean;
 }
 
 export default styled.input<InputProps>`
