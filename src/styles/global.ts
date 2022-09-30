@@ -18,13 +18,14 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
     font-family: 'Sora', sans-serif;
     color: ${theme.colors.gray[900]};
   }
-  button { 
-    cursor: pointer; 
+  button {
+    cursor: pointer;
   }
   .mainContainer {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
+    padding: 0 16px;
   }
 `;
 
